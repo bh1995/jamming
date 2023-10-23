@@ -8,7 +8,9 @@ const LeftContainer = ({ searchResults, onAddToRight, onRemoveFromLeft }) => {
       <ul>
         {searchResults.map((result) => (
           <div key={result.id} className="search-result">
-            <span>{result.name}</span>
+            <span>{result.name}</span> <br></br>
+            <span>{result.artist}</span> <br></br>
+            <span>{result.album}</span> <br></br> 
             <button onClick={() => onAddToRight(result)}>Move to Right</button>
             <button onClick={() => onRemoveFromLeft(result)}>Remove</button>
           </div>

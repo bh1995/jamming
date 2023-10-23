@@ -10,7 +10,7 @@ import RightContainer from "./RightContainer";
 function App() {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [rightContainer, setRightContainer] = useState([]);
+  const [trackList, setTrackList] = useState([{}]);
 
   // Callback function to update the search text state
   const handleSearchChange = (text) => {
@@ -28,7 +28,12 @@ function App() {
   };
 
   const handleAddToRight = (result) => {
-    setRightContainer([...rightContainer, result]);
+    // get the id which to move, and then add that the current array
+    const toAdd = searchResults.filter((r) => r.id === result.id)[0];
+    console.log(toAdd);
+    setTrackList((prev) => [toAdd, ...prev] );
+    console.log(trackList);
+    // set state to entire current searchResults array except id which is being moved
     setSearchResults(searchResults.filter((r) => r.id !== result.id));
   };
 
@@ -57,7 +62,7 @@ function App() {
         </div>
         <div className="right-container">
           Right Container
-          <RightContainer rightContainer={rightContainer} />
+          <RightContainer trackList={trackList} />
         </div>
       </div>
     </div>

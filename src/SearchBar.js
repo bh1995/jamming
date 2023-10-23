@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchBar = ({searchText, handleSearchChange, handleSearchClick}) => {
+const SearchBar = ({ searchText, handleSearchChange, handleSearchClick }) => {
   // Implement search logic using the Spotify API
 
   return (
