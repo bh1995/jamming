@@ -5,10 +5,12 @@ import "./SearchResults";
 import "./Playlist";
 import Header from "./Header";
 import LeftContainer from "./LeftContainer";
+import RightContainer from "./RightContainer";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [rightContainer, setRightContainer] = useState([]);
 
   // Callback function to update the search text state
   const handleSearchChange = (text) => {
@@ -25,6 +27,15 @@ function App() {
     setSearchResults(results);
   };
 
+  const handleAddToRight = (result) => {
+    setRightContainer([...rightContainer, result]);
+    setSearchResults(searchResults.filter((r) => r.id !== result.id));
+  };
+
+  const handleRemoveFromLeft = (result) => {
+    setSearchResults(searchResults.filter((r) => r.id !== result.id));
+  };
+
   return (
     <div className="app">
       <Header />
@@ -38,9 +49,16 @@ function App() {
       <div className="container">
         <div className="left-container">
           Left Container
-          <LeftContainer searchResults={searchResults} />
+          <LeftContainer
+            searchResults={searchResults}
+            onAddToRight={handleAddToRight}
+            onRemoveFromLeft={handleRemoveFromLeft}
+          />
         </div>
-        <div className="right-container">Right Container</div>
+        <div className="right-container">
+          Right Container
+          <RightContainer rightContainer={rightContainer} />
+        </div>
       </div>
     </div>
   );
