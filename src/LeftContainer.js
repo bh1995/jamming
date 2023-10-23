@@ -1,15 +1,21 @@
-import React from 'react';
+import React from "react";
 
-function LeftContainer({ searchResults }) {
+const LeftContainer = ({ searchResults, onAddToRight, onRemoveFromLeft }) => {
+
+
   return (
     <div>
       <ul>
         {searchResults.map((result) => (
-          <li key={result.id}>{result.name}</li>
+          <div key={result.id} className="search-result">
+            <span>{result.name}</span>
+            <button onClick={() => onAddToRight(result)}>Move to Right</button>
+            <button onClick={() => onRemoveFromLeft(result)}>Remove</button>
+          </div>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default LeftContainer;
