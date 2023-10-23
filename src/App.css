@@ -29,3 +29,41 @@
 .small {
   font-size: 0.75rem;
 }
+
+.Header {
+  text-align: center;
+  font-family: Tahoma, sans-serif;
+  color: blueviolet;
+}
+
+/* styles.css */
+
+.app {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.search-bar {
+  margin: 20px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-container {
+  width: 45%; /* Adjust the width as needed */
+  height: 50vh;
+  background-color: #e0e0e0;
+  padding: 20px;
+}
+
+.right-container {
+  width: 45%; /* Adjust the width as needed */
+  height: 50vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
