@@ -1,44 +1,72 @@
 import React, { useState } from "react";
 import "./App.css";
 import SearchBar from "./SearchBar";
-import "./SearchResults";
-import "./Playlist";
+import PlaylistBar from "./PlaylistBar";
 import Header from "./Header";
 import LeftContainer from "./LeftContainer";
 import RightContainer from "./RightContainer";
+import { getTopTracks, searchTracks, createPlaylist } from "./fetchWebApi";
 
 function App() {
   const [searchText, setSearchText] = useState("");
+  const [playlistText, setPlaylistText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [trackList, setTrackList] = useState([{}]);
+  const [trackList, setTrackList] = useState([
+    {
+      album: {
+        album_type: "single",
+        artists: [
+          {
+            external_urls: {
+              spotify: "",
+            },
+            href: "",
+            id: "",
+            name: "",
+          },
+        ],
+        name: "",
+      },
+      artists: [{ name: "" }],
+      id: "",
+      name: "",
+    },
+  ]);
 
   // Callback function to update the search text state
   const handleSearchChange = (text) => {
     setSearchText(text);
   };
 
-  const handleSearchClick = () => {
-    // Hardcoded search results. Object data: name, artist, album, id
-    const results = [
-      { name: "song1", artist: "artist1", album: "album1", id: 1 },
-      { name: "song2", artist: "artist2", album: "album2", id: 2 },
-      { name: "song3", artist: "artist3", album: "album3", id: 3 },
-    ];
-    setSearchResults(results);
+  // Callback function to update the search text state
+  const handlePlaylistTextChange = (text) => {
+    setPlaylistText(text);
+  };
+
+  const handleSearchClick = async () => {
+    // console.log(searchText)
+    const results = await searchTracks(searchText);
+    const resultsTracks = results["tracks"].items;
+
+    setSearchResults(resultsTracks);
   };
 
   const handleAddToRight = (result) => {
     // get the id which to move, and then add that the current array
     const toAdd = searchResults.filter((r) => r.id === result.id)[0];
-    console.log(toAdd);
-    setTrackList((prev) => [toAdd, ...prev] );
-    console.log(trackList);
+    setTrackList((prev) => [toAdd, ...prev]);
     // set state to entire current searchResults array except id which is being moved
     setSearchResults(searchResults.filter((r) => r.id !== result.id));
   };
 
   const handleRemoveFromLeft = (result) => {
     setSearchResults(searchResults.filter((r) => r.id !== result.id));
+  };
+
+  const handleCreatePlaylistClick = () => {
+    // create playlist from contents of trackList via api
+    console.log("playlist created");
+    createPlaylist(trackList, playlistText);
   };
 
   return (
@@ -62,6 +90,13 @@ function App() {
         </div>
         <div className="right-container">
           Right Container
+          <div className="play-list-bar">
+            <PlaylistBar
+              playlistText={playlistText}
+              handlePlaylistTextChange={handlePlaylistTextChange}
+              handleCreatePlaylistClick={handleCreatePlaylistClick}
+            />
+          </div>
           <RightContainer trackList={trackList} />
         </div>
       </div>

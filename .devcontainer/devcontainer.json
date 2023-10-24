@@ -17,7 +17,8 @@
 	},
 	"vscode": {
 		"extensions": [
-			"esbenp.prettier-vscode"
+			"esbenp.prettier-vscode",
+			"bradlc.vscode-tailwindcss"
 		]
 	}
   },
@@ -28,4 +29,5 @@
     }
   },
   "forwardPorts": [3000]
+  
 }
