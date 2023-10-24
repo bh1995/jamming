@@ -67,3 +67,30 @@
   background-color: #f0f0f0;
   padding: 20px;
 }
+
+span {
+  flex: 1;
+  margin-right: 10px;
+  color: #333; /* Default color for text */
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}

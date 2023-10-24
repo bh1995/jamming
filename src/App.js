@@ -5,7 +5,7 @@ import PlaylistBar from "./PlaylistBar";
 import Header from "./Header";
 import LeftContainer from "./LeftContainer";
 import RightContainer from "./RightContainer";
-import { getTopTracks, searchTracks, createPlaylist } from "./fetchWebApi";
+import { searchTracks, createPlaylist } from "./fetchWebApi";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -63,6 +63,10 @@ function App() {
     setSearchResults(searchResults.filter((r) => r.id !== result.id));
   };
 
+  const handleRemoveFromRight = (result) => {
+    setTrackList(trackList.filter((r) => r.id !== result.id));
+  };
+
   const handleCreatePlaylistClick = () => {
     // create playlist from contents of trackList via api
     console.log("playlist created");
@@ -97,7 +101,10 @@ function App() {
               handleCreatePlaylistClick={handleCreatePlaylistClick}
             />
           </div>
-          <RightContainer trackList={trackList} />
+          <RightContainer
+            trackList={trackList}
+            onRemoveFromRight={handleRemoveFromRight}
+          />
         </div>
       </div>
     </div>
