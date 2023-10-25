@@ -6,11 +6,13 @@ import Header from "./Header";
 import LeftContainer from "./LeftContainer";
 import RightContainer from "./RightContainer";
 import { searchTracks, createPlaylist } from "./fetchWebApi";
+import createToken from "./createToken";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [playlistText, setPlaylistText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [token, setToken] = useState("iamatoken");
   const [trackList, setTrackList] = useState([
     {
       album: {
@@ -45,7 +47,8 @@ function App() {
 
   const handleSearchClick = async () => {
     // console.log(searchText)
-    const results = await searchTracks(searchText);
+    // console.log(token)
+    const results = await searchTracks(token, searchText);
     const resultsTracks = results["tracks"].items;
 
     setSearchResults(resultsTracks);
@@ -70,12 +73,26 @@ function App() {
   const handleCreatePlaylistClick = () => {
     // create playlist from contents of trackList via api
     console.log("playlist created");
-    createPlaylist(trackList, playlistText);
+    createPlaylist(token, trackList, playlistText);
   };
+
+  const handlAuthenticatation = () => {
+    // create auth token
+    const tokenPromise = createToken();
+    // set state with tokenpromise
+    tokenPromise.then((accessToken) => {
+      if (accessToken.length > 20) {
+        console.log("token created") 
+      } else {
+        console.log("token NOT created") 
+      }
+      setToken(accessToken);
+    })
+  }
 
   return (
     <div className="app">
-      <Header />
+      <Header onAuthenticate={handlAuthenticatation} />
       <div className="search-bar">
         <SearchBar
           searchText={searchText}

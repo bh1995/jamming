@@ -15,6 +15,12 @@ const LeftContainer = ({ searchResults, onAddToRight, onRemoveFromLeft }) => {
                 >
                   X
                 </button>
+                <button
+                  onClick={() => onAddToRight(result)}
+                  className="move-right-button"
+                >
+                  Move to Right
+                </button>
               </div>
               <div className="track-row">
                 <span className="track-artist">
@@ -27,20 +33,6 @@ const LeftContainer = ({ searchResults, onAddToRight, onRemoveFromLeft }) => {
             </div>
           </li>
         ))}
-        {/* {searchResults.map((result) => (
-          <div key={result.id} className="list-item">
-            <span>{result.name}</span> <br></br>
-            <span>{result["artists"][0].name}</span> <br></br>
-            <span>{result["album"].name}</span> <br></br>
-            <button onClick={() => onAddToRight(result)}>Move to Right</button>
-            <button
-              onClick={() => onRemoveFromLeft(result)}
-              className="remove-button"
-            >
-              X
-            </button>
-          </div>
-        ))} */}
       </ul>
     </div>
   );

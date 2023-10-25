@@ -80,6 +80,7 @@ span {
   padding: 5px;
   border: 1px solid #ccc;
   margin: 5px;
+  background-color: darkorchid;
 }
 
 .list-container {
@@ -94,3 +95,12 @@ span {
   cursor: pointer;
   padding: 5px 10px;
 }
+
+.move-right-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
