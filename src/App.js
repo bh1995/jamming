@@ -13,27 +13,7 @@ function App() {
   const [playlistText, setPlaylistText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [token, setToken] = useState("iamatoken");
-  const [trackList, setTrackList] = useState([
-    {
-      album: {
-        album_type: "single",
-        artists: [
-          {
-            external_urls: {
-              spotify: "",
-            },
-            href: "",
-            id: "",
-            name: "",
-          },
-        ],
-        name: "",
-      },
-      artists: [{ name: "" }],
-      id: "",
-      name: "",
-    },
-  ]);
+  const [trackList, setTrackList] = useState([]);
 
   // Callback function to update the search text state
   const handleSearchChange = (text) => {
@@ -47,10 +27,8 @@ function App() {
 
   const handleSearchClick = async () => {
     // console.log(searchText)
-    // console.log(token)
     const results = await searchTracks(token, searchText);
     const resultsTracks = results["tracks"].items;
-
     setSearchResults(resultsTracks);
   };
 
@@ -77,7 +55,7 @@ function App() {
   };
 
   const handlAuthenticatation = () => {
-    // create auth token
+    // redirect ToAuthCodeFlow, if already created then will set token
     const tokenPromise = createToken();
     // set state with tokenpromise
     tokenPromise.then((accessToken) => {
@@ -102,7 +80,7 @@ function App() {
       </div>
       <div className="container">
         <div className="left-container">
-          Left Container
+          <h3>Search Results</h3>
           <LeftContainer
             searchResults={searchResults}
             onAddToRight={handleAddToRight}
@@ -110,7 +88,7 @@ function App() {
           />
         </div>
         <div className="right-container">
-          Right Container
+          <h3>Create Playlist</h3>
           <div className="play-list-bar">
             <PlaylistBar
               playlistText={playlistText}

@@ -15,15 +15,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #c3a698;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-.heart {
-  color: #ff0000;
 }
 
 .small {
@@ -33,15 +29,23 @@
 .Header {
   text-align: center;
   font-family: Tahoma, sans-serif;
-  color: blueviolet;
+  color: white;
+}
+
+.header-link {
+  text-decoration: none;
+  color: inherit; 
+  cursor: pointer; 
 }
 
 /* styles.css */
 
 .app {
+  background-color: #3f6b6f;
   text-align: center;
   margin: 0 auto;
-  max-width: 800px;
+  width: 95%;
+  height: 95%;
   padding: 20px;
 }
 
@@ -57,50 +61,94 @@
 .left-container {
   width: 45%; /* Adjust the width as needed */
   height: 50vh;
-  background-color: #e0e0e0;
-  padding: 20px;
+  max-height: 50vh;
+  background-color: #c3a698;
+  padding: 1vh;
+  overflow: auto;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
 }
 
 .right-container {
   width: 45%; /* Adjust the width as needed */
   height: 50vh;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-span {
-  flex: 1;
-  margin-right: 10px;
-  color: #333; /* Default color for text */
-}
-
-.list-item {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  border: 1px solid #ccc;
-  margin: 5px;
-  background-color: darkorchid;
-}
-
-.list-container {
-  display: flex;
-  flex-direction: column;
+  max-height: 50vh;
+  background-color: #62424B;
+  padding: 1vh;
+  overflow: auto;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
 }
 
 .remove-button {
-  background-color: red;
+  background-color: #3f6b6f;
   color: white;
   border: none;
   cursor: pointer;
   padding: 5px 10px;
+  border-radius: 4px;
 }
 
 .move-right-button {
-  background-color: blue;
+  background-color: #4e3036;
   color: white;
   border: none;
   cursor: pointer;
   padding: 5px;
+  border-radius: 4px;
 }
 
+.track-list {
+  list-style: none;
+  display: flex; /* Use flexbox to align items */
+  flex-direction: column; /* Display items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+}
+
+.track-container {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #b17fa4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 8px 0;
+  padding: 8px;
+  width: 20vh;
+  height: 15vh;
+}
+
+.track-container-r {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4e3036;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 8px 0;
+  padding: 8px;
+  width: 20vh;
+  height: 15vh;
+}
+
+.track-row {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin: 1vh 0;
+}
+
+.track-artist {
+  font-weight: bold;
+  margin-right: 1vh;
+  color: black;
+}
+
+.track-album {
+  font-weight: bold;
+  color: black;
+}
+
+.track-name {
+  font-weight: bold;
+  color: black;
+}
