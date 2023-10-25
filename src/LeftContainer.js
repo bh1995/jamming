@@ -13,7 +13,7 @@ const LeftContainer = ({ searchResults, onAddToRight, onRemoveFromLeft }) => {
               <div className="track-row">
                 Artist:
                 <span className="track-artist">
-                  {result["artists"][0].name}
+                  { result["artists"][0].name}
                 </span>
               </div>
               <div className="track-row">

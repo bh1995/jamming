@@ -8,7 +8,7 @@ const RightContainer = ({ trackList, onRemoveFromRight }) => {
           <div className="track-container">
             <li key={result.id}>
               <div className="track-row">
-                Track: <span className="track-name ">{result.name}</span>
+                Track: <span className="track-name">{ result.name}</span>
               </div>
               <div className="track-row">
                 Artist:{" "}
